@@ -16,7 +16,7 @@
 	<c:set var="avg" value="${tot/2 }"/>
 	
 	<h3 class="alert alert-info">
-	폼데이터1 읽기<br>
+	폼데이터1 각각 읽기<br>
 	이름: ${name }
 	자바: ${java }
 	스프링: ${spring }

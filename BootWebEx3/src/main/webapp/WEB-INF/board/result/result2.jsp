@@ -15,7 +15,7 @@
 	
 	<!-- dto 불러올때 앞글자는 소문자 D는 대문자로 하면 컨트롤러에서 리턴만 줘도 DTO값 불러올수있음!!  -->
 	<h3 class="alert alert-warning">
-	form 데이터 DTO 읽기<br>
+	form 데이터2 DTO 읽기<br>
 	이름: ${personDto.name }
 	나이: ${personDto.age }
 	주소: ${personDto.addr }
