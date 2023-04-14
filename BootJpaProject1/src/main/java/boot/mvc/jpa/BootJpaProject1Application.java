@@ -7,9 +7,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan({"mycar.data"})
-@EntityScan("mycar.data") //dto인식
-@EnableJpaRepositories("mycar.data") //dao인식
+@ComponentScan({"mycar.data","quiz.jshop.data"})
+@EntityScan({"mycar.data","quiz.jshop.data"}) //dto인식
+@EnableJpaRepositories({"mycar.data","quiz.jshop.data"}) //dao인식
+
 public class BootJpaProject1Application {
 
 	public static void main(String[] args) {
