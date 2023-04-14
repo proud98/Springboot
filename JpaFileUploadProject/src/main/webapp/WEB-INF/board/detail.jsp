@@ -10,8 +10,35 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
 <title>Insert title here</title>
+<style type="text/css">
+.table{
+font-size: 1.5em;
+text-align: center;
+}
+</style>
 </head>
 <body>
+	<h2 class="alert alert-info" style="width: 600px;"><b>${dto.subject }</b></h2>
+	<h2 class="alert alert-info" style="width: 600px;"><b>${dto.writer }</b>이 작성함!!!</h2>
+	<table class="table table-bordered" style="width: 600px;">
+		<tr>
+			<td>
+			${dto.content }<br>
+			<img alt="" src="/save/${dto.photo }" style="max-width: 500px;">
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+			<button type="button" class="btn btn-info" onclick="location.href='updateform?num=${dto.num}'">수정</button>
+			<button type="button" class="btn btn-info" onclick="location.href='delete?num=${dto.num}'">삭제</button>
+			<button type="button" class="btn btn-info" onclick="location.href='list'">목록</button>
+			</td>
+		</tr>
+		
+		
 	
+	
+	</table>
 </body>
 </html>

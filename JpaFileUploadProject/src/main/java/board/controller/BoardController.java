@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,17 +68,18 @@ public class BoardController {
 			dto.setPhoto("no");
 		}else {
 			dto.setPhoto(uploadName);
-		}
+	
+			//실제 업로드
+			try {
+				upload.transferTo(new File(realPath+"\\"+uploadName));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
-		//실제 업로드
-		try {
-			upload.transferTo(new File(realPath+"\\"+uploadName));
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		//db저장
@@ -85,5 +87,80 @@ public class BoardController {
 		
 		return "redirect:list";
 	}
+	
+	//디테일
+	@GetMapping("/board/detail")
+	public ModelAndView detail(long num) {
+		
+		ModelAndView mview=new ModelAndView();
+		
+		BoardDto dto=dao.getData(num);
+		
+		mview.addObject("dto", dto);
+		mview.setViewName("detail");
+		
+		return mview;
+	}
+	
+	//삭제
+	@GetMapping("/board/delete")
+	public String delete(long num, HttpSession session) {
+		
+		String uploadName=dao.getData(num).getPhoto();
+		if(!uploadName.equals("no")) {
+			 String path=session.getServletContext().getRealPath("/save");
+			 
+			 File file=new File(path+"\\"+uploadName);
+			 file.delete();
+		}
+		
+		dao.deleteBoard(num);
+		
+		return "redirect:list";
+	}
+	
+	//수정폼이동
+	@GetMapping("/board/updateform")
+	public String updateform(long num, Model model) {
+		
+		BoardDto dto=dao.getData(num);
+		
+		model.addAttribute("dto", dto);
+		
+		return "updateform";
+	}
+	
+	//수정
+	@PostMapping("/board/update")
+	public String update(long num, @ModelAttribute BoardDto dto, @RequestParam MultipartFile reupload, HttpSession session) {
+		 	
+		String path=session.getServletContext().getRealPath("/save");
+		
+		String uploadName=reupload.getOriginalFilename();
+		
+		if(reupload.isEmpty()) {
+			dto.setPhoto(dao.getData(dto.getNum()).getPhoto());
+		}else {
+			dto.setPhoto(uploadName);		
+		
+			try {
+				reupload.transferTo(new File(path+"\\"+uploadName));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
+		
+		dto.setPhoto(uploadName);
+		dao.updateBoard(dto);
+		
+		
+		return "redirect:detail?num="+num;
+	}
+	
 
 }
