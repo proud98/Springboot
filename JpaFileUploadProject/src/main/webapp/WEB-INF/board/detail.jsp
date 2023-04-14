@@ -35,10 +35,7 @@ text-align: center;
 			<button type="button" class="btn btn-info" onclick="location.href='list'">목록</button>
 			</td>
 		</tr>
-		
-		
-	
-	
+
 	</table>
 </body>
 </html>
