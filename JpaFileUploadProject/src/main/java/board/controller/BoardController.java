@@ -155,7 +155,6 @@ public class BoardController {
 		
 		}
 		
-		dto.setPhoto(uploadName);
 		dao.updateBoard(dto);
 		
 		
