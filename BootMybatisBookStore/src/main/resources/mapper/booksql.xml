@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDMapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="data.mapper.BookMapperInter">
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from seojum
+	</select>
+	
+	<select id="getAllDatas" resultType="bookdto">
+		select * from seojum
+	</select>
+	
+	<insert id="insertBook" parameterType="bookdto">
+		insert into seojum (bookname,bookwriter,bookprice,bookphoto,bookcompany,ipgoday) values (#{bookname},#{bookwriter},#{bookprice},#{bookphoto},#{bookcompany},now())
+	</insert>
+</mapper>
