@@ -14,7 +14,7 @@
 
 <style type="text/css">
 *{
-font-size: 1.1em;
+font-size: 20pt;
 font-family:'Gamja Flower'; 
 }
 
@@ -29,9 +29,9 @@ font-size: 1.5em;
 div.layout div.menu{
 position: absolute;
 top: 150px;
-left: 250px;
+left: 150px;
 height: 100px;
-width: 1000px;
+width: 1300px;
 }
 
 div.layout div.info{

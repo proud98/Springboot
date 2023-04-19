@@ -12,6 +12,35 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h2 class="alert alert-info">총 ${count }명의 회원이 있습니다</h2><br>
+	<table class="table table-bordereds" style="width: 800px;">
+	<caption><b>전체 회원 명단</b></caption>
+		<tr style="background-color: #ffccc">
+		<th style="width: 70px;">번호</th>
+		<th style="width: 200px;">이름</th>
+		<th style="width: 100px;">아이디</th>
+		<th style="width: 200px;">핸드폰</th>
+		<th style="width: 200px;">주소</th>
+		<th style="width: 30px;"><input type="checkbox" id="allcheck"></th>
+		</tr>
+		
+		<c:forEach var="dto" items="${list }" varStatus="i">
+			<tr>
+				<td>${i.count}</td>
+				<td><img src="../photo/${dto.photo }" width="80"> &nbsp; ${dto.name }</td>
+				<td>${dto.id }</td>
+				<td>${dto.hp }</td>
+				<td>${dto.addr }</td>
+				<td><input type="checkbox" class="del" num=${dto.num }> </td>
+			</tr>
+		</c:forEach>
+	
+	<tr>
+		<td colspan="7" align="right">
+		<button type="button" class="btn btn-info" id="btnmemberdel">삭제</button>
+		</td>
+	</tr>	
+	</table>
 	
 </body>
 </html>

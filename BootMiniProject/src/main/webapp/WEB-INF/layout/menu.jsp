@@ -13,7 +13,7 @@
 
 <style type="text/css">
 body{
-font-size: 1.5em;
+font-size: 1.2em;
 font-family: 'Gamja Flower';
 }
 
@@ -30,7 +30,6 @@ line-height: 60px;
 margin-right: 10px;
 text-align: center;
 font-size: 25px;
-background-color: "#fffcc";
 cursor: pointer;
 }
 
@@ -70,6 +69,10 @@ text-decoration: none;
 		
 		<li>
 			<a href="${root }/member/form">회원가입</a>
+		</li>
+		
+		<li>
+			<a href="${root }/member/myinfo">나의정보</a>
 		</li>
 		
 		<li>

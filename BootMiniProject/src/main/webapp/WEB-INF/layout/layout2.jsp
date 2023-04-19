@@ -36,7 +36,7 @@ width: 1000px;
 
 div.layout div.main{
 position: absolute;
-top: 50px;
+top: 300px;
 left: 300px;
 height: 800px;
 width: 1000px;

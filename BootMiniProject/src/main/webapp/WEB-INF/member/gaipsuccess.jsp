@@ -12,10 +12,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:set var="root" value="<%=request.getContextPath() %>"> </c:set> <!--절대경로 -->
-	
-	<a href=${root }> 
-		<b style="color: orange;">SpringBootMybatisTiles 제2의 레이아웃</b>
-	</a>
+	<script type="text/javascript">
+	alert("가입성공~!");
+	history.back();
+	</script>
 </body>
 </html>

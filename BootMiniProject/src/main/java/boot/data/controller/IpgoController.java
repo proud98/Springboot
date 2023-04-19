@@ -58,7 +58,7 @@ public class IpgoController {
 		model.addObject("list", list);
 		
 		//model.setViewName("ipgolist"); jsp 리졸버
-		model.setViewName("/sub/ipgo/ipgolist"); //tiles 리졸버
+		model.setViewName("/ipgo/ipgolist"); //tiles 리졸버
 		return model;
 	}
 	
@@ -66,7 +66,7 @@ public class IpgoController {
 	public String form() {
 		
 		//return "ipgoform"; jsp 리졸버
-		return "/sub/ipgo/ipgoform";
+		return "/ipgo/ipgoform";
 	}
 	
 	@PostMapping("/ipgo/insert")
@@ -109,6 +109,13 @@ public class IpgoController {
 		mapper.insertIpgo(dto);
 		
 		return "redirect:list";
+	}
+	
+	//오시는길로 가기 서브레이아웃으로
+	@GetMapping("load/map")
+	public String map() {
+		
+		return "/sub/load/map"; //title 레이아웃은 /폴더명/파일명 or /sub/폴더명/파일명
 	}
 	
 
