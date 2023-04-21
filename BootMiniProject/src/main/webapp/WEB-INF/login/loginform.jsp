@@ -12,6 +12,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<div>
+		<form action="loginprocess" method="post">
+			<table class="table table-bordered" style="width: 300px;">
+			<caption><b>로그인</b></caption>
+				<tr>
+					<td>
+					<input type="text" name="id" class="form-control" placeholder="ID 입력" required="required" autofocus="autofocus" value="${sessionScope.saveok==null?'':sessionScope.myid }">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+					<input type="password" name="pass" class="form-control" placeholder="PASSWORD 입력" required="required">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+					<input type="checkbox" name="cbsave" ${sessionScope.saveok==null?"":"checked" }>아이디 저장&nbsp;
+					<button type="submit" class="btn btn-info">로그인</button>
+					</td>
+				</tr>
+			
+			</table>
+		
+		</form>
+	</div>
 </body>
 </html>

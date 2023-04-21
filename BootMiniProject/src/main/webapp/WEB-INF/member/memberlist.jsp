@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
 <title>Insert title here</title>
+
 </head>
 <body>
 	<h2 class="alert alert-info">총 ${count }명의 회원이 있습니다</h2><br>
@@ -31,7 +32,7 @@
 				<td>${dto.id }</td>
 				<td>${dto.hp }</td>
 				<td>${dto.addr }</td>
-				<td><input type="checkbox" class="del" num=${dto.num }> </td>
+				<td><input type="checkbox" class="del" name="num" num="${dto.num }"> </td>
 			</tr>
 		</c:forEach>
 	
@@ -41,6 +42,53 @@
 		</td>
 	</tr>	
 	</table>
+	
+<script type="text/javascript">
+
+//전체선택(allcheck)
+$("#allcheck").click(function(){
+	
+	//체크값 얻기
+	var chk=$(this).is(":checked");
+	
+	//전체체크값 개별 체크박스에 전달 
+	$(".del").prop(":checked", chk);
+	
+});
+
+
+$("#btnmemberdel").click(function(){
+	
+	var cnt=$(".del:checked").length;
+	
+	if(cnt==0){
+		alert("한 명 이상의 회원을 선택하세요");
+		return; //종료
+	}
+	
+	$(".del:checked").each(function(i,elt){
+		
+		var num=$(this).attr("num");
+		
+		//삭제ajax
+		$.ajax({
+			
+			type:"get",
+			url:"delete",
+			dataType:"html",
+			data:{"num":num},
+			success:function(){
+				
+				alert("삭제되었습니다");
+				location.reload();
+			}
+		});
+		
+	});
+	
+	
+});	
+</script>	
 	
 </body>
 </html>

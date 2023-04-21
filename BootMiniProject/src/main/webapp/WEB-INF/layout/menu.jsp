@@ -56,24 +56,37 @@ text-decoration: none;
 			<a href="${root }/ipgo/list">목록</a>
 		</li>
 		
-		<li>
-			<a href="${root }/member/list">회원목록</a>
-		</li>
+		<c:if test="${sessionScope.loginok!=null and sessionScope.myid=='admin' }">
+			<li>
+				<a href="${root }/member/list">회원목록</a>
+			</li>
+		</c:if>
+		
 		<li>
 			<a href="${root }/board/list">게시판</a>
 		</li>
 		
 		<li>
-			<a href="${root }/login/main">로그인</a> <!-- main 통해서 감 -->
+			<c:if test="${sessionScope.loginok==null }">
+				<a href="${root }/login/main">로그인</a> <!-- main 통해서 감 -->
+			</c:if>
+			
+			<c:if test="${sessionScope.loginok!=null }">
+				<a href="${root }/login/main">로그아웃</a> <!-- main 통해서 감 -->
+			</c:if>
 		</li>
 		
-		<li>
-			<a href="${root }/member/form">회원가입</a>
-		</li>
+		<c:if test="${sessionScope.loginok==null }">
+			<li>
+				<a href="${root }/member/form">회원가입</a>
+			</li>
+		</c:if>
 		
-		<li>
-			<a href="${root }/member/myinfo">나의정보</a>
-		</li>
+		<c:if test="${sessionScope.loginok!=null }">
+			<li>
+				<a href="${root }/member/myinfo">나의정보</a>
+			</li>
+		</c:if>
 		
 		<li>
 			<a href="${root }/load/map">오시는길</a>

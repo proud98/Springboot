@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import boot.data.dto.MemberDto;
 import boot.data.service.MemberServiceInter;
@@ -93,8 +95,8 @@ public class MemberController {
 	      
 	      service.insertMember(dto);
 	      
-	      // return "/member/gaipSuccess";
-	      return "redirect:list";
+	      return "/member/gaipsuccess";
+	      //return "redirect:list";
 	   }
 	
 	//나의 정보로 이동
@@ -107,5 +109,45 @@ public class MemberController {
 		
 		return "/member/myinfo";
 	}
+	
+	
+	//회원목록 삭제
+	@GetMapping("/member/delete")
+	@ResponseBody
+	public void deleteMember(@RequestParam String num) {
+		
+		service.memberDelete(num);
+	}
+	
+	//회원정보에서 사진만 수정
+	@PostMapping("/member/updatephoto")
+	@ResponseBody
+	public void photoUpload(String num, MultipartFile photo, HttpSession session) {
+		//ajax에서 파일업로드는 MultipartFilefmf form과 이름을 맞춰주지 않아도 됨
+		
+		//업로드 될 경로
+		String path=session.getServletContext().getRealPath("/photo");
+		
+		//파일명구하기
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+		String fName="f_"+sdf.format(new Date())+photo.getOriginalFilename();
+		
+		try {
+			
+			photo.transferTo(new File(path+"\\"+fName));
+			
+			service.updatePhoto(num, fName); //db 사진 수정 (세션은아직)
+			session.setAttribute("loginphoto", fName); //세션까지 수정
+			
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
 
 }
