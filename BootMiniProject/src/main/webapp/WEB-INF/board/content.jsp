@@ -148,8 +148,6 @@ $(function(){
 });
 
 
-	
-
 //list 사용자 함수
 function list(){
 	

@@ -67,6 +67,10 @@ text-decoration: none;
 		</li>
 		
 		<li>
+			<a href="${root }/smart/form">스마트</a>
+		</li>
+		
+		<li>
 			<c:if test="${sessionScope.loginok==null }">
 				<a href="${root }/login/main">로그인</a> <!-- main 통해서 감 -->
 			</c:if>

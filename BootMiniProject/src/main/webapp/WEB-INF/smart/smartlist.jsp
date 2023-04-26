@@ -10,53 +10,42 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
 <title>Insert title here</title>
-
-<style type="text/css">
-a{
-color: black;
-}
-</style>
 </head>
 <body>
-	<c:if test="${sessionScope.loginok!=null }">
-		<button type="button" class="btn btn-info" onclick="location.href='form'">글쓰기</button><br><br>
-	</c:if>
 	
-	<table class="table table-bordered" style="width: 1000px;">
+	<h3 class="alert alert-info">${totalCount }</h3>
+	<button type="button" class="btn btn-info" onclick="location.href='form'">상품추가</button><br><br>
+	
+	<table class="table table-bordered" style="width: 900px;">
+	<caption><b>상품목록</b></caption>
 		<tr bgcolor="#fffcc">
-		<th width="50">번호</th>
-		<th width="100">작성자</th>
-		<th width="300">제목</th>
-		<th width="50">조회</th>
-		<th width="100">등록일</th>
+		<th width="100">번호</th>
+		<th width="300">상품명</th>
+		<th width="100">색상</th>
+		<th width="200">가격</th>
+		<th width="200">입고일</th>
 		</tr>
 		
 		<c:if test="${totalCount==0 }">
 			<tr>
 				<td colspan="5">
-				<b>등록된 게시글이 없습니다</b>
+				<b>등록된 상품이 없습니다</b>
 				</td>
 			</tr>
 		</c:if>
 		
 		<c:if test="${totalCount>0 }">
-			<c:forEach var="dto" items="${list }">
-			<tr>
-				<c:set var="no" value="${no-1 }"/>
+			<c:forEach var="s" items="${list }">
+			<c:set var="no" value="${no-1 }"/>
+				<tr>
 				<td>${no }</td>
-				<td>${dto.name }</td>
-				<td> <a href='content?num=${dto.num }&currentPage?${currentPage}'>${dto.subject }
-					<c:if test="${dto.acount>0 }"> <!-- 댓글이 있을 경우 제목 옆에 댓글 표시 -->
-					<b style="color: red;">[${dto.acount }]</b>
-					</c:if>
-					</a>
-				</td>
-				<td>${dto.readcount }</td>
-				<td><fmt:formatDate value="${dto.writeday }" pattern="yyyy.MM.dd"/> </td>
-			</tr>
+				<td><a href="detail?num=${s.num }&currentPage=${currentPage}" style="color: black">${s.sangpum }</a></td>
+				<td>${s.color }</td>
+				<td><fmt:formatNumber value="${s.price }" type="currency" /> </td>
+				<td>${s.ipgoday }</td>
+				</tr>
 			</c:forEach>
 		</c:if>
-	
 	</table>
 	
 	<c:if test="${totalCount>0 }">
@@ -97,6 +86,5 @@ color: black;
 		
 		</c:if>
 ​
-		
 </body>
 </html>
