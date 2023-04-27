@@ -67,6 +67,10 @@ text-decoration: none;
 		</li>
 		
 		<li>
+			<a href="${root }/reboard/list">답변형</a>
+		</li>
+		
+		<li>
 			<a href="${root }/smart/form">스마트</a>
 		</li>
 		

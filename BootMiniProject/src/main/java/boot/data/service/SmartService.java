@@ -45,7 +45,7 @@ public class SmartService implements SmartServiceInter {
 
 	@Override
 	public void deleteShop(int num) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method 
 		mapper.deleteShop(num);
 		
 	}
